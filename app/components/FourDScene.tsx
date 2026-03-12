@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback } from "react";
+import { useRef, useMemo, useCallback, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Float, Text, Sparkles } from "@react-three/drei";
 import {
@@ -10,15 +10,28 @@ import * as THREE from "three";
 import { BlendFunction } from "postprocessing";
 
 /* ── 4D Particle Swarm ─────────────────────────────────────── */
+function useIsMobile() {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return mobile;
+}
+
 function ParticleSwarm({
   activeSection,
   wRotation,
+  isMobile,
 }: {
   activeSection: number;
   wRotation: number;
+  isMobile: boolean;
 }) {
   const meshRef = useRef<THREE.InstancedMesh>(null!);
-  const count = 12000;
+  const count = isMobile ? 5000 : 12000;
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const target = useMemo(() => new THREE.Vector3(), []);
   const pColor = useMemo(() => new THREE.Color(), []);
@@ -190,6 +203,56 @@ function CameraController({ activeSection }: { activeSection: number }) {
   return null;
 }
 
+/* ── Mobile-Aware Wrappers ─────────────────────────────────── */
+function MobileAwareScene({
+  activeSection,
+  wRotation,
+}: {
+  activeSection: number;
+  wRotation: number;
+}) {
+  const isMobile = useIsMobile();
+  return (
+    <>
+      <ParticleSwarm activeSection={activeSection} wRotation={wRotation} isMobile={isMobile} />
+      <DimensionalRings activeSection={activeSection} />
+      <Sparkles count={isMobile ? 80 : 200} scale={120} size={2} speed={0.3} opacity={0.4} />
+    </>
+  );
+}
+
+function MobileAwareEffects() {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <EffectComposer>
+        <Bloom
+          intensity={0.8}
+          luminanceThreshold={0}
+          luminanceSmoothing={0.9}
+          mipmapBlur
+        />
+      </EffectComposer>
+    );
+  }
+
+  return (
+    <EffectComposer>
+      <Bloom
+        intensity={1.5}
+        luminanceThreshold={0}
+        luminanceSmoothing={0.9}
+        mipmapBlur
+      />
+      <ChromaticAberration
+        blendFunction={BlendFunction.NORMAL}
+        offset={new THREE.Vector2(0.001, 0.001)}
+      />
+    </EffectComposer>
+  );
+}
+
 /* ── Main Scene Export ────────────────────────────────────── */
 export default function FourDScene({
   activeSection,
@@ -213,9 +276,7 @@ export default function FourDScene({
     >
       <color attach="background" args={["#030308"]} />
       <fog attach="fog" args={["#030308", 80, 200]} />
-      <ParticleSwarm activeSection={activeSection} wRotation={wRotation} />
-      <DimensionalRings activeSection={activeSection} />
-      <Sparkles count={200} scale={120} size={2} speed={0.3} opacity={0.4} />
+      <MobileAwareScene activeSection={activeSection} wRotation={wRotation} />
       <CameraController activeSection={activeSection} />
       <OrbitControls
         enableZoom={false}
@@ -225,18 +286,7 @@ export default function FourDScene({
         maxPolarAngle={Math.PI * 0.75}
         minPolarAngle={Math.PI * 0.25}
       />
-      <EffectComposer>
-        <Bloom
-          intensity={1.5}
-          luminanceThreshold={0}
-          luminanceSmoothing={0.9}
-          mipmapBlur
-        />
-        <ChromaticAberration
-          blendFunction={BlendFunction.NORMAL}
-          offset={new THREE.Vector2(0.001, 0.001)}
-        />
-      </EffectComposer>
+      <MobileAwareEffects />
     </Canvas>
   );
 }

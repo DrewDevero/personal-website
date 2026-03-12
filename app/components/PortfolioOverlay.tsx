@@ -154,13 +154,21 @@ function WAxisIndicator({ wRotation }: { wRotation: number }) {
 }
 
 /* ── Dimension Badge ──────────────────────────────────────── */
-function DimensionBadge() {
+function DimensionBadge({ activeSection }: { activeSection: number }) {
+  const isHero = activeSection === 0;
+
   return (
-    <div className="fixed top-6 left-6 z-30">
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/25 bg-white/20 backdrop-blur-xl">
-        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-        <span className="text-[10px] font-mono text-white/70 uppercase tracking-[0.3em]">
-          4D Projection Active
+    <div
+      className={`fixed top-6 left-6 z-30 transition-all duration-700 ${
+        isHero
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 -translate-y-6 pointer-events-none"
+      }`}
+    >
+      <div className="flex items-center gap-1.5 md:gap-2 px-2 py-1 md:px-3 md:py-1.5 rounded-full border border-white/25 bg-white/20 backdrop-blur-xl">
+        <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-cyan-400 animate-pulse" />
+        <span className="text-[8px] md:text-[10px] font-mono text-white/70 uppercase tracking-[0.2em] md:tracking-[0.3em]">
+          4D Active
         </span>
       </div>
     </div>
@@ -889,8 +897,17 @@ export default function PortfolioOverlay({
         <ContactSection visible={activeSection === 4} scrollRef={setSectionRef(4)} />
       </div>
 
-      {/* Side navigation dots */}
-      <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-4">
+      {/* Side navigation dots — on mobile, moves to top-left when badge hides */}
+      <nav
+        className={`fixed z-30 flex flex-col gap-4 transition-all duration-700
+          md:right-6 md:top-1/2 md:-translate-y-1/2
+          ${
+            activeSection === 0
+              ? "right-4 top-1/2 -translate-y-1/2 md:right-6"
+              : "left-4 top-6 translate-y-0 md:left-auto md:right-6 md:top-1/2 md:-translate-y-1/2"
+          }
+        `}
+      >
         {SECTIONS.map((section, i) => (
           <NavDot
             key={section.id}
@@ -902,14 +919,14 @@ export default function PortfolioOverlay({
         ))}
       </nav>
 
-      {/* Dimension badge */}
-      <DimensionBadge />
+      {/* Dimension badge — visible only on hero */}
+      <DimensionBadge activeSection={activeSection} />
 
       {/* W-axis indicator */}
       <WAxisIndicator wRotation={wRotation} />
 
-      {/* Social quick links — top right */}
-      <div className="fixed top-6 right-6 z-30 flex items-center gap-2">
+      {/* Social quick links — top right, smaller on mobile */}
+      <div className="fixed top-6 right-6 z-30 flex items-center gap-1.5 md:gap-2">
         {[
           { href: "https://github.com/DrewDevero", icon: <GithubIcon /> },
           {
@@ -923,7 +940,7 @@ export default function PortfolioOverlay({
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-full border border-white/25 bg-white/20 text-white/50 backdrop-blur-xl hover:text-white/90 hover:bg-white/30 transition-all duration-300"
+            className="p-1.5 md:p-2 rounded-full border border-white/25 bg-white/20 text-white/50 backdrop-blur-xl hover:text-white/90 hover:bg-white/30 transition-all duration-300 [&_svg]:w-4 [&_svg]:h-4 md:[&_svg]:w-5 md:[&_svg]:h-5"
           >
             {s.icon}
           </a>
