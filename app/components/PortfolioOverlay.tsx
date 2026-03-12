@@ -227,7 +227,7 @@ function DimensionBadge({ activeSection }: { activeSection: number }) {
 type ScrollRef = (el: HTMLElement | null) => void;
 
 /* ── Hero Section ─────────────────────────────────────────── */
-function HeroSection({ visible, scrollRef }: { visible: boolean; scrollRef: ScrollRef }) {
+function HeroSection({ visible, scrollRef, onNavigate }: { visible: boolean; scrollRef: ScrollRef; onNavigate: (index: number) => void }) {
   return (
     <section
       ref={scrollRef}
@@ -262,20 +262,18 @@ function HeroSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scro
         </p>
 
         <div className="flex items-center justify-center gap-4">
-          <a
-            href="#projects"
-            onClick={(e) => e.preventDefault()}
-            className="px-6 py-2.5 rounded-full bg-white/15 border border-white/25 text-white text-sm font-medium backdrop-blur-lg hover:bg-white/25 transition-all duration-300"
+          <button
+            onClick={() => onNavigate(2)}
+            className="px-6 py-2.5 rounded-full bg-white/15 border border-white/25 text-white text-sm font-medium backdrop-blur-lg hover:bg-white/25 transition-all duration-300 cursor-pointer"
           >
             Explore Works →
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => e.preventDefault()}
-            className="px-6 py-2.5 rounded-full border border-white/10 text-white/60 text-sm hover:text-white hover:border-white/30 transition-all duration-300"
+          </button>
+          <button
+            onClick={() => onNavigate(4)}
+            className="px-6 py-2.5 rounded-full border border-white/10 text-white/60 text-sm hover:text-white hover:border-white/30 transition-all duration-300 cursor-pointer"
           >
             Make Contact
-          </a>
+          </button>
         </div>
       </div>
     </section>
@@ -938,7 +936,7 @@ export default function PortfolioOverlay({
 
       {/* Content sections */}
       <div className="relative z-10 w-full h-full">
-        <HeroSection visible={activeSection === 0} scrollRef={setSectionRef(0)} />
+        <HeroSection visible={activeSection === 0} scrollRef={setSectionRef(0)} onNavigate={handleNav} />
         <AboutSection visible={activeSection === 1} scrollRef={setSectionRef(1)} />
         <ProjectsSection visible={activeSection === 2} scrollRef={setSectionRef(2)} />
         <SkillsSection visible={activeSection === 3} scrollRef={setSectionRef(3)} />
