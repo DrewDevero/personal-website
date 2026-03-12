@@ -710,9 +710,7 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
 }
 
 /* ── Contact Section ───────────────────────────────────────── */
-function ContactSection({ visible, scrollRef }: { visible: boolean; scrollRef: ScrollRef }) {
-  const [resumeOpen, setResumeOpen] = useState(false);
-
+function ContactSection({ visible, scrollRef, onResumeOpen }: { visible: boolean; scrollRef: ScrollRef; onResumeOpen: () => void }) {
   return (
     <section
       ref={scrollRef}
@@ -722,7 +720,6 @@ function ContactSection({ visible, scrollRef }: { visible: boolean; scrollRef: S
           : "opacity-0 translate-y-8 pointer-events-none"
       }`}
     >
-      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
       <div className="max-w-lg mx-auto px-6 text-center">
         <span className="text-[11px] font-mono text-purple-400/80 uppercase tracking-[0.3em] mb-4 block">
           ∴ Make Contact
@@ -776,7 +773,7 @@ function ContactSection({ visible, scrollRef }: { visible: boolean; scrollRef: S
           ))}
           {/* Resume button */}
           <button
-            onClick={() => setResumeOpen(true)}
+            onClick={onResumeOpen}
             className="group flex items-center gap-3 rounded-xl border border-white/25 bg-white/20 backdrop-blur-xl p-4 hover:bg-white/30 hover:border-white/35 transition-all duration-300 text-left cursor-pointer"
           >
             <span className="text-white/50 group-hover:text-white/80 transition-colors">
@@ -834,6 +831,8 @@ export default function PortfolioOverlay({
   wRotation: number;
   setWRotation: (w: number) => void;
 }) {
+  const [resumeOpen, setResumeOpen] = useState(false);
+
   // Refs for each section's scrollable container
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const setSectionRef = useCallback(
@@ -943,7 +942,7 @@ export default function PortfolioOverlay({
         <AboutSection visible={activeSection === 1} scrollRef={setSectionRef(1)} />
         <ProjectsSection visible={activeSection === 2} scrollRef={setSectionRef(2)} />
         <SkillsSection visible={activeSection === 3} scrollRef={setSectionRef(3)} />
-        <ContactSection visible={activeSection === 4} scrollRef={setSectionRef(4)} />
+        <ContactSection visible={activeSection === 4} scrollRef={setSectionRef(4)} onResumeOpen={() => setResumeOpen(true)} />
       </div>
 
       {/* Desktop: side nav dots (vertical, right side). Hidden on mobile. */}
@@ -1011,6 +1010,9 @@ export default function PortfolioOverlay({
           </a>
         ))}
       </div>
+
+      {/* Resume modal — rendered at root level to sit above all z-index layers */}
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </div>
   );
 }
