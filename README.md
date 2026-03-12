@@ -1,87 +1,83 @@
-# Welcome to React Router!
+# Drew Devero — 4D Creative Technologist Portfolio
 
-A modern, production-ready template for building full-stack React applications using React Router.
+An interactive 4D portfolio website for **Alston Drew Devero-Belfon** — full-stack engineer, AI researcher, and creative technologist.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## ✦ About
 
-## Features
+A classically trained opera singer turned software engineer, Drew brings storytelling, voice, physicality, and code together to build immersive experiences. This site showcases that intersection through a real-time 4D particle swarm visualization layered beneath a navigable portfolio.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## ✦ Features
 
-## Getting Started
+- **4D Particle Swarm** — 12,000 instanced tetrahedra rendered via stereographic projection with per-section color palettes
+- **Section-Based Navigation** — five sections (Origin, About, Works, Stack, Ping) with scroll-boundary detection, keyboard, mouse wheel, and touch swipe support
+- **Post-Processing** — Bloom and Chromatic Aberration via `@react-three/postprocessing`
+- **Resume Modal** — inline PDF viewer triggered from the contact section
+- **Responsive & Accessible** — glassmorphic UI with high-contrast text tuned for readability
 
-### Installation
+## ✦ Tech Stack
 
-Install the dependencies:
+| Layer | Tools |
+|-------|-------|
+| Framework | React Router 7, React 19, TypeScript |
+| 3D | Three.js, @react-three/fiber, @react-three/drei, @react-three/postprocessing |
+| Styling | Tailwind CSS 4 |
+| Build | Vite 7 |
+| Fonts | Inter, JetBrains Mono |
+
+## ✦ Getting Started
 
 ```bash
+# Install dependencies
 npm install
-```
 
-### Development
-
-Start the development server with HMR:
-
-```bash
+# Start development server
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The site will be available at `http://localhost:5173`.
 
-## Building for Production
-
-Create a production build:
+## ✦ Building for Production
 
 ```bash
 npm run build
 ```
 
-## Deployment
+## ✦ Deployment
 
-### Docker Deployment
-
-To build and run using Docker:
+### Docker
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+docker build -t drew-devero-4d .
+docker run -p 3000:3000 drew-devero-4d
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### Node
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+```bash
+npm run build
+npx react-router-serve ./build/server/index.js
 ```
 
-## Styling
+## ✦ Project Structure
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+```
+app/
+├── components/
+│   ├── FourDScene.tsx        # 4D particle swarm, rings, camera, post-processing
+│   └── PortfolioOverlay.tsx  # All UI sections, navigation, resume modal
+├── routes/
+│   └── home.tsx              # Main route — ties scene + overlay together
+├── root.tsx                  # Root layout, fonts, favicon
+├── app.css                   # Global styles, dark theme
+└── routes.ts                 # Route config
+public/
+├── favicon.ico
+└── Alston Drew Devero-Belfon_Resume.pdf
+```
 
----
+## ✦ Connect
 
-Built with ❤️ using React Router.
+- [GitHub](https://github.com/DrewDevero)
+- [LinkedIn](https://www.linkedin.com/in/alston-devero-belfon/)
+- [X / Twitter](https://x.com/DrewDevero)
+- [Portfolio](https://drewdevero.com)
