@@ -4,9 +4,7 @@ An interactive 4D portfolio website for **Alston Drew Devero-Belfon** — full-s
 
 ## ✦ Portfolio Showreel
 
-<a href="Drew-Devero-Portfolio-Showreel-Mar-12-07-05-10.mp4">
-  <img src="public/DrewDevero_website_screenshot.png" alt="Portfolio Showreel" width="100%" />
-</a>
+<video src="Drew-Devero-Portfolio-Showreel-Mar-12-07-05-10.mp4" poster="public/DrewDevero_website_screenshot.png" controls width="100%"></video>
 
 ## ✦ About
 
