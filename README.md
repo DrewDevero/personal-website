@@ -2,6 +2,12 @@
 
 An interactive 4D portfolio website for **Alston Drew Devero-Belfon** — full-stack engineer, AI researcher, and creative technologist.
 
+## ✦ Portfolio Showreel
+
+<a href="Drew-Devero-Portfolio-Showreel-Mar-12-07-05-10.mp4">
+  <img src="public/DrewDevero_website_screenshot.png" alt="Portfolio Showreel" width="100%" />
+</a>
+
 ## ✦ About
 
 A classically trained opera singer turned software engineer, Drew brings storytelling, voice, physicality, and code together to build immersive experiences. This site showcases that intersection through a real-time 4D particle swarm visualization layered beneath a navigable portfolio.
