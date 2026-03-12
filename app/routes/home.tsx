@@ -5,13 +5,29 @@ import PortfolioOverlay from "../components/PortfolioOverlay";
 const FourDScene = lazy(() => import("../components/FourDScene"));
 
 export function meta({}: Route.MetaArgs) {
+  const title = "Drew Devero — 4D Creative Technologist Portfolio";
+  const description =
+    "Alston Drew Devero-Belfon: Full Stack Engineer, AI Researcher, and Creative Technologist. Explore an interactive 4D portfolio.";
+  const image = "https://drewdevero.com/og-image.png";
+  const url = "https://drewdevero.com";
+
   return [
-    { title: "Drew Devero — 4D Creative Technologist Portfolio" },
-    {
-      name: "description",
-      content:
-        "Alston Drew Devero-Belfon: Full Stack Engineer, AI Researcher, and Creative Technologist. Explore an interactive 4D portfolio.",
-    },
+    { title },
+    { name: "description", content: description },
+    // Open Graph
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: url },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: image },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    // Twitter / X
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:site", content: "@DrewDevero" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: image },
   ];
 }
 
