@@ -897,17 +897,8 @@ export default function PortfolioOverlay({
         <ContactSection visible={activeSection === 4} scrollRef={setSectionRef(4)} />
       </div>
 
-      {/* Side navigation dots — on mobile, moves to top-left when badge hides */}
-      <nav
-        className={`fixed z-30 flex flex-col gap-4 transition-all duration-700
-          md:right-6 md:top-1/2 md:-translate-y-1/2
-          ${
-            activeSection === 0
-              ? "right-4 top-1/2 -translate-y-1/2 md:right-6"
-              : "left-4 top-6 translate-y-0 md:left-auto md:right-6 md:top-1/2 md:-translate-y-1/2"
-          }
-        `}
-      >
+      {/* Desktop: side nav dots (vertical, right side). Hidden on mobile. */}
+      <nav className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-4">
         {SECTIONS.map((section, i) => (
           <NavDot
             key={section.id}
@@ -918,6 +909,31 @@ export default function PortfolioOverlay({
           />
         ))}
       </nav>
+
+      {/* Mobile: single active-section dot in top-left, hidden on hero (index 0) */}
+      <div className="md:hidden fixed top-6 left-4 z-30">
+        {SECTIONS.map((section, i) => (
+          <div
+            key={section.id}
+            className={`absolute top-0 left-0 flex items-center gap-2 transition-all duration-500 ${
+              activeSection === i && i !== 0
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-4 pointer-events-none"
+            }`}
+          >
+            <button
+              onClick={() => handleNav(i)}
+              className="flex items-center gap-2"
+              aria-label={`Current section: ${section.label}`}
+            >
+              <span className="block w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.6)]" />
+              <span className="text-[10px] font-mono text-white/80 uppercase tracking-[0.2em]">
+                {section.label}
+              </span>
+            </button>
+          </div>
+        ))}
+      </div>
 
       {/* Dimension badge — visible only on hero */}
       <DimensionBadge activeSection={activeSection} />
