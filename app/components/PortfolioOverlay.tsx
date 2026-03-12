@@ -44,6 +44,15 @@ function ResumeIcon() {
 
 /* ── Resume Modal ─────────────────────────────────────────── */
 function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
@@ -54,6 +63,8 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
   }, [open, onClose]);
 
   if (!open) return null;
+
+  const pdfUrl = "/Alston%20Drew%20Devero-Belfon_Resume.pdf";
 
   return (
     <div
@@ -79,12 +90,50 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
           </svg>
         </button>
 
-        {/* PDF embed */}
-        <iframe
-          src="/Alston%20Drew%20Devero-Belfon_Resume.pdf"
-          className="w-full h-full"
-          title="Resume — Alston Drew Devero-Belfon"
-        />
+        {isMobile ? (
+          /* Mobile fallback — PDF iframes don't render on most mobile browsers */
+          <div className="flex flex-col items-center justify-center h-full px-6 text-center gap-6">
+            <div className="w-16 h-16 rounded-2xl border border-white/20 bg-white/10 flex items-center justify-center">
+              <ResumeIcon />
+            </div>
+            <div>
+              <h3 className="text-white text-lg font-semibold mb-2">Resume</h3>
+              <p className="text-white/50 text-sm leading-relaxed mb-6">
+                Alston Drew Devero-Belfon
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 w-full max-w-xs">
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600/80 to-purple-600/80 border border-white/10 text-white text-sm font-medium hover:from-blue-500/80 hover:to-purple-500/80 transition-all duration-300"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Open in New Tab
+              </a>
+              <a
+                href={pdfUrl}
+                download
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/25 bg-white/10 text-white/70 text-sm font-medium hover:bg-white/20 hover:text-white transition-all duration-300"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download PDF
+              </a>
+            </div>
+          </div>
+        ) : (
+          /* Desktop — full PDF embed */
+          <iframe
+            src={pdfUrl}
+            className="w-full h-full"
+            title="Resume — Alston Drew Devero-Belfon"
+          />
+        )}
       </div>
     </div>
   );
@@ -625,7 +674,7 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
 
         {/* DNA table */}
         <div className="mt-6 rounded-xl border border-white/25 bg-white/20 backdrop-blur-xl p-5">
-          <div className="grid grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 text-center">
             {[
               {
                 attr: "Logic Mode",
