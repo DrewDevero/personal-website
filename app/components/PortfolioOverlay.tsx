@@ -238,16 +238,16 @@ function HeroSection({ visible, scrollRef, onNavigate }: { visible: boolean; scr
       }`}
     >
       <div className="text-center max-w-3xl px-6">
-        <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/25 bg-white/20 backdrop-blur-xl">
+        <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[11px] font-mono text-white/60 uppercase tracking-[0.25em]">
             Available for Collaboration
           </span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-4 leading-[1.1]">
-          <span className="block">Alston Drew</span>
-          <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+        <h1 className="text-[2.35rem] sm:text-5xl md:text-7xl font-bold tracking-tight text-white mb-4 leading-[1.1]">
+          <span className="block whitespace-nowrap">Alston Drew</span>
+          <span className="block whitespace-nowrap bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
             Devero-Belfon
           </span>
         </h1>
@@ -255,7 +255,7 @@ function HeroSection({ visible, scrollRef, onNavigate }: { visible: boolean; scr
         <p className="text-lg md:text-xl text-white/60 font-light mb-3 leading-relaxed">
           Full Stack Engineer · AI Researcher · Creative Technologist
         </p>
-        <p className="text-sm text-white/35 max-w-xl mx-auto mb-8 leading-relaxed">
+        <p className="text-base text-white/70 max-w-xl mx-auto mb-8 leading-relaxed">
           Classically trained opera singer turned software engineer — I use
           storytelling, voice, physicality, and code to build
           immersive&nbsp;experiences.
@@ -264,13 +264,13 @@ function HeroSection({ visible, scrollRef, onNavigate }: { visible: boolean; scr
         <div className="flex items-center justify-center gap-4">
           <button
             onClick={() => onNavigate(2)}
-            className="px-6 py-2.5 rounded-full bg-white/15 border border-white/25 text-white text-sm font-medium backdrop-blur-lg hover:bg-white/25 transition-all duration-300 cursor-pointer"
+            className="px-6 py-2.5 rounded-full bg-blue-600/65 border border-sky-300/45 text-white text-base font-medium backdrop-blur-lg hover:bg-blue-500/75 transition-all duration-300 cursor-pointer"
           >
             Explore Works →
           </button>
           <button
             onClick={() => onNavigate(4)}
-            className="px-6 py-2.5 rounded-full border border-white/10 text-white/60 text-sm hover:text-white hover:border-white/30 transition-all duration-300 cursor-pointer"
+            className="px-6 py-2.5 rounded-full border border-sky-300/35 bg-slate-900/70 text-white/85 text-base hover:text-white hover:border-sky-200/55 hover:bg-slate-800/85 transition-all duration-300 cursor-pointer"
           >
             Make Contact
           </button>
@@ -300,7 +300,7 @@ function AboutSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scr
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
             Where Stage Meets&nbsp;Screen
           </h2>
-          <div className="space-y-4 text-white/55 text-sm leading-relaxed">
+          <div className="space-y-4 text-white/80 text-base leading-relaxed">
             <p>
               A detail-oriented and collaborative full-stack engineer and
               researcher who uses his background in the{" "}
@@ -326,7 +326,7 @@ function AboutSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scr
 
         {/* Right — Identity Card */}
         <div className="relative">
-          <div className="rounded-2xl border border-white/25 bg-white/20 backdrop-blur-xl p-6 space-y-5">
+          <div className="rounded-2xl border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl p-6 space-y-5">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
                 AD
@@ -335,7 +335,7 @@ function AboutSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scr
                 <p className="text-white text-sm font-semibold">
                   Drew Devero
                 </p>
-                <p className="text-white/55 text-xs">
+                <p className="text-white/80 text-sm">
                   Creative Technologist
                 </p>
               </div>
@@ -350,12 +350,12 @@ function AboutSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scr
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-lg bg-white/15 border border-white/20 p-3"
+                  className="rounded-lg bg-slate-800/80 border border-sky-300/30 p-3"
                 >
                   <p className="text-[10px] font-mono text-white/40 uppercase tracking-wider mb-1">
                     {item.label}
                   </p>
-                  <p className="text-white/80 text-xs font-medium">
+                  <p className="text-white/90 text-sm font-medium">
                     {item.value}
                   </p>
                 </div>
@@ -366,7 +366,7 @@ function AboutSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scr
               <p className="text-[10px] font-mono text-white/35 uppercase tracking-wider mb-2">
                 Achievements
               </p>
-              <p className="text-white/70 text-xs leading-relaxed">
+              <p className="text-white/85 text-sm leading-relaxed">
                 Led team to win{" "}
                 <span className="text-amber-400/90">
                   CUNY × Blackstone 2024 Innovation Sprint
@@ -396,7 +396,7 @@ interface ProjectData {
 function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
   return (
     <div
-      className="group rounded-xl border border-white/25 bg-white/20 backdrop-blur-xl p-5 hover:bg-white/30 hover:border-white/35 transition-all duration-500 cursor-pointer"
+      className="group rounded-xl border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl p-5 hover:bg-slate-800/85 hover:border-sky-200/55 transition-all duration-500 cursor-pointer"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <div className="flex items-start justify-between mb-3">
@@ -434,17 +434,17 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           </a>
         )}
       </div>
-      <h3 className="text-white text-sm font-semibold mb-2 group-hover:text-white/90">
+      <h3 className="text-white text-base font-semibold mb-2 group-hover:text-white">
         {project.title}
       </h3>
-      <p className="text-white/50 text-xs leading-relaxed mb-3">
+      <p className="text-white/80 text-sm leading-relaxed mb-3">
         {project.description}
       </p>
       <div className="flex flex-wrap gap-1.5">
         {project.tech.map((t) => (
           <span
             key={t}
-            className="px-2 py-0.5 rounded-md bg-white/10 text-white/45 text-[10px] font-mono"
+            className="px-2 py-0.5 rounded-md bg-slate-800/80 border border-sky-300/25 text-white/80 text-xs font-mono"
           >
             {t}
           </span>
@@ -548,7 +548,7 @@ function ProjectsSection({ visible, scrollRef }: { visible: boolean; scrollRef: 
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
             The Intersection of AI &amp; Interaction
           </h2>
-          <p className="text-white/40 text-sm">
+          <p className="text-white/70 text-base">
             Projects spanning accessibility, enterprise AI, 3D rendering, and
             creative technology
           </p>
@@ -639,7 +639,7 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
             Multimodal Stack
           </h2>
-          <p className="text-white/40 text-sm">
+          <p className="text-white/70 text-base">
             Syncing voice, vision, and text across the full stack
           </p>
         </div>
@@ -648,10 +648,10 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
           {SKILL_CATEGORIES.map((cat) => (
             <div
               key={cat.label}
-              className="rounded-xl border border-white/25 bg-white/20 backdrop-blur-xl p-5"
+              className="rounded-xl border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl p-5"
             >
               <h3
-                className="text-xs font-mono uppercase tracking-[0.2em] mb-4"
+                className="text-sm font-mono uppercase tracking-[0.2em] mb-4"
                 style={{ color: cat.color }}
               >
                 {cat.label}
@@ -660,7 +660,7 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
                 {cat.items.map((skill) => (
                   <span
                     key={skill}
-                    className="px-2.5 py-1 rounded-lg text-xs text-white/70 border border-white/20 bg-white/15 hover:bg-white/25 hover:text-white/90 transition-all duration-300"
+                    className="px-2.5 py-1 rounded-lg text-sm text-white/85 border border-sky-300/30 bg-slate-800/80 hover:bg-slate-700/85 hover:text-white transition-all duration-300"
                   >
                     {skill}
                   </span>
@@ -671,7 +671,7 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
         </div>
 
         {/* DNA table */}
-        <div className="mt-6 rounded-xl border border-white/25 bg-white/20 backdrop-blur-xl p-5">
+        <div className="mt-6 rounded-xl border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl p-5">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 text-center">
             {[
               {
@@ -694,10 +694,10 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
                 <p className="text-[10px] font-mono text-white/35 uppercase tracking-wider mb-1">
                   {item.attr}
                 </p>
-                <p className="text-white text-sm font-semibold mb-0.5">
+                <p className="text-white text-base font-semibold mb-0.5">
                   {item.value}
                 </p>
-                <p className="text-white/45 text-[10px]">{item.desc}</p>
+                <p className="text-white/75 text-xs">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -725,7 +725,7 @@ function ContactSection({ visible, scrollRef, onResumeOpen }: { visible: boolean
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
           Let's Create Together
         </h2>
-        <p className="text-white/45 text-sm mb-8 leading-relaxed">
+        <p className="text-white/75 text-base mb-8 leading-relaxed">
           Ready for innovative and creative conversation. Whether it's building
           immersive AI experiences, accessible applications, or something
           entirely new — let's connect across dimensions.
@@ -758,35 +758,35 @@ function ContactSection({ visible, scrollRef, onResumeOpen }: { visible: boolean
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 rounded-xl border border-white/25 bg-white/20 backdrop-blur-xl p-4 hover:bg-white/30 hover:border-white/35 transition-all duration-300"
+              className="group flex items-center gap-3 rounded-xl border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl p-4 hover:bg-slate-800/85 hover:border-sky-200/55 transition-all duration-300"
             >
               <span className="text-white/50 group-hover:text-white/80 transition-colors">
                 {social.icon}
               </span>
               <div className="text-left">
-                <p className="text-white text-xs font-medium">{social.label}</p>
-                <p className="text-white/30 text-[10px]">{social.desc}</p>
+                <p className="text-white text-sm font-medium">{social.label}</p>
+                <p className="text-white/75 text-xs">{social.desc}</p>
               </div>
             </a>
           ))}
           {/* Resume button */}
           <button
             onClick={onResumeOpen}
-            className="group flex items-center gap-3 rounded-xl border border-white/25 bg-white/20 backdrop-blur-xl p-4 hover:bg-white/30 hover:border-white/35 transition-all duration-300 text-left cursor-pointer"
+            className="group flex items-center gap-3 rounded-xl border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl p-4 hover:bg-slate-800/85 hover:border-sky-200/55 transition-all duration-300 text-left cursor-pointer"
           >
             <span className="text-white/50 group-hover:text-white/80 transition-colors">
               <ResumeIcon />
             </span>
             <div>
-              <p className="text-white text-xs font-medium">Resume</p>
-              <p className="text-white/30 text-[10px]">View PDF</p>
+              <p className="text-white text-sm font-medium">Resume</p>
+              <p className="text-white/75 text-xs">View PDF</p>
             </div>
           </button>
         </div>
 
         <a
           href="mailto:deverobelfon@gmail.com"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600/80 to-purple-600/80 border border-white/10 text-white text-sm font-medium hover:from-blue-500/80 hover:to-purple-500/80 transition-all duration-300 shadow-[0_0_30px_rgba(100,100,255,0.15)]"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600/85 to-purple-600/85 border border-sky-300/40 text-white text-base font-medium hover:from-blue-500/90 hover:to-purple-500/90 transition-all duration-300 shadow-[0_0_30px_rgba(100,100,255,0.2)]"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
@@ -799,7 +799,7 @@ function ContactSection({ visible, scrollRef, onResumeOpen }: { visible: boolean
           Open Communication Channel
         </a>
 
-        <p className="mt-6 text-white/20 text-[10px] font-mono">
+        <p className="mt-6 text-white/55 text-xs font-mono">
           "I'm excited for our multi-modal collaboration!"
         </p>
       </div>
@@ -932,7 +932,7 @@ export default function PortfolioOverlay({
   return (
     <div className="fixed inset-0 z-10 overflow-hidden">
       {/* Background overlay gradient — reduced for transparency */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/50 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/45 to-black/70 pointer-events-none z-0" />
 
       {/* Content sections */}
       <div className="relative z-10 w-full h-full">
@@ -1002,7 +1002,7 @@ export default function PortfolioOverlay({
             href={s.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 md:p-2 rounded-full border border-white/25 bg-white/20 text-white/50 backdrop-blur-xl hover:text-white/90 hover:bg-white/30 transition-all duration-300 [&_svg]:w-4 [&_svg]:h-4 md:[&_svg]:w-5 md:[&_svg]:h-5"
+            className="p-1.5 md:p-2 rounded-full border border-sky-300/40 bg-slate-900/80 text-white/75 backdrop-blur-xl hover:text-white hover:bg-slate-800/85 transition-all duration-300 [&_svg]:w-4 [&_svg]:h-4 md:[&_svg]:w-5 md:[&_svg]:h-5"
           >
             {s.icon}
           </a>
