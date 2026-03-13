@@ -285,13 +285,13 @@ function AboutSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scr
   return (
     <section
       ref={scrollRef}
-      className={`absolute inset-0 overflow-y-auto flex flex-col items-center justify-center py-24 transition-all duration-1000 ${
+      className={`absolute inset-0 overflow-y-auto flex flex-col items-center justify-start md:justify-center pt-24 pb-24 transition-all duration-1000 ${
         visible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-8 pointer-events-none"
       }`}
     >
-      <div className="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-4xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
         {/* Left — Text */}
         <div>
           <span className="text-[11px] font-mono text-cyan-400/80 uppercase tracking-[0.3em] mb-4 block">
@@ -625,7 +625,7 @@ function SkillsSection({ visible, scrollRef }: { visible: boolean; scrollRef: Sc
   return (
     <section
       ref={scrollRef}
-      className={`absolute inset-0 overflow-y-auto flex flex-col items-center justify-center py-24 transition-all duration-1000 ${
+      className={`absolute inset-0 overflow-y-auto flex flex-col items-center justify-start md:justify-center pt-24 pb-24 transition-all duration-1000 ${
         visible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-8 pointer-events-none"
@@ -712,7 +712,7 @@ function ContactSection({ visible, scrollRef, onResumeOpen }: { visible: boolean
   return (
     <section
       ref={scrollRef}
-      className={`absolute inset-0 overflow-y-auto flex flex-col items-center justify-center py-24 transition-all duration-1000 ${
+      className={`absolute inset-0 overflow-y-auto flex flex-col items-center justify-start md:justify-center pt-24 pb-24 transition-all duration-1000 ${
         visible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-8 pointer-events-none"
