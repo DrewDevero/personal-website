@@ -462,7 +462,7 @@ const PROJECTS: ProjectData[] = [
     description:
       "Interactive storytelling app bridging patron stories with brand identity. Agile Immersion — high-fidelity storytelling without six-month cycles. Reduced visual production from weeks to hours.",
     tech: ["Three.js", "R3F", "OpenAI", "ElevenLabs", "Next.js 16", "Vercel"],
-    link: "https://mobile-brand-adventure.vercel.app/",
+    link: "https://www.brandjourney.app/",
     color: "#f59e0b",
   },
   {
