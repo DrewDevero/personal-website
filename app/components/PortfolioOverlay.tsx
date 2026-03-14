@@ -293,14 +293,14 @@ function AboutSection({ visible, scrollRef }: { visible: boolean; scrollRef: Scr
     >
       <div className="max-w-4xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center">
         {/* Left — Text */}
-        <div>
+        <div className="text-center md:text-left">
           <span className="text-[11px] font-mono text-cyan-400/80 uppercase tracking-[0.3em] mb-4 block">
             ∴ Origin Story
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
             Where Stage Meets&nbsp;Screen
           </h2>
-          <div className="space-y-4 text-white/80 text-base leading-relaxed">
+          <div className="space-y-4 text-white/80 text-base leading-relaxed text-left">
             <p>
               A detail-oriented and collaborative full-stack engineer and
               researcher who uses his background in the{" "}
