@@ -79,6 +79,18 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         className="relative w-full max-w-4xl h-[85vh] rounded-2xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-[0_0_60px_rgba(100,100,255,0.15),0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Download button — sits left of the native PDF viewer's save/download control */}
+        <a
+          href={pdfUrl}
+          download
+          className="absolute top-2 right-12 z-10 p-2 rounded-full border border-white/25 bg-white/20 backdrop-blur-xl text-white/60 hover:text-white hover:bg-white/30 transition-all duration-300 cursor-pointer"
+          aria-label="Download resume"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+        </a>
+
         {/* Close button */}
         <button
           onClick={onClose}
