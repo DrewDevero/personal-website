@@ -79,12 +79,12 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         className="relative w-full max-w-4xl h-[85vh] rounded-2xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-[0_0_60px_rgba(100,100,255,0.15),0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Link button — opens resume in a new tab; styled to match modal header icons */}
+        {/* Link button — styled to match Chrome's native PDF-toolbar icons, sits left of Save-to-Drive */}
         <a
           href={pdfUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-2 right-12 z-10 p-2 rounded-full border border-white/25 bg-white/20 backdrop-blur-xl text-white/60 hover:text-white hover:bg-white/30 transition-all duration-300 cursor-pointer"
+          className="absolute top-2 right-24 z-10 p-1.5 rounded-md text-[#e8eaed] hover:bg-white/10 transition-colors cursor-pointer"
           aria-label="Open resume link in new tab"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
