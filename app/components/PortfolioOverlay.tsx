@@ -79,15 +79,16 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         className="relative w-full max-w-4xl h-[85vh] rounded-2xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-[0_0_60px_rgba(100,100,255,0.15),0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Download button — click downloads; right-click still allows "Open link in new tab" */}
+        {/* Link button — opens resume in a new tab; styled to match modal header icons */}
         <a
           href={pdfUrl}
-          download
+          target="_blank"
+          rel="noopener noreferrer"
           className="absolute top-2 right-12 z-10 p-2 rounded-full border border-white/25 bg-white/20 backdrop-blur-xl text-white/60 hover:text-white hover:bg-white/30 transition-all duration-300 cursor-pointer"
-          aria-label="Download resume"
+          aria-label="Open resume link in new tab"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
           </svg>
         </a>
 
@@ -110,9 +111,21 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
             </div>
             <div>
               <h3 className="text-white text-lg font-semibold mb-2">Resume</h3>
-              <p className="text-white/50 text-sm leading-relaxed">
+              <p className="text-white/50 text-sm leading-relaxed mb-6">
                 Alston Drew Devero-Belfon
               </p>
+            </div>
+            <div className="flex flex-col gap-3 w-full max-w-xs">
+              <a
+                href={pdfUrl}
+                download
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600/80 to-purple-600/80 border border-white/10 text-white text-sm font-medium hover:from-blue-500/80 hover:to-purple-500/80 transition-all duration-300"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download PDF
+              </a>
             </div>
           </div>
         ) : (
