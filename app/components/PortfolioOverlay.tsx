@@ -79,7 +79,7 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         className="relative w-full max-w-4xl h-[85vh] rounded-2xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-[0_0_60px_rgba(100,100,255,0.15),0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Download button — sits left of the native PDF viewer's save/download control */}
+        {/* Download button — click downloads; right-click still allows "Open link in new tab" */}
         <a
           href={pdfUrl}
           download
@@ -117,19 +117,8 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
             <div className="flex flex-col gap-3 w-full max-w-xs">
               <a
                 href={pdfUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600/80 to-purple-600/80 border border-white/10 text-white text-sm font-medium hover:from-blue-500/80 hover:to-purple-500/80 transition-all duration-300"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Open in New Tab
-              </a>
-              <a
-                href={pdfUrl}
                 download
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/25 bg-white/10 text-white/70 text-sm font-medium hover:bg-white/20 hover:text-white transition-all duration-300"
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600/80 to-purple-600/80 border border-white/10 text-white text-sm font-medium hover:from-blue-500/80 hover:to-purple-500/80 transition-all duration-300"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
