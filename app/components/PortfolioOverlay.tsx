@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
+const RESUME_URL = "/Alston%20Drew%20Devero-Belfon_Resume.pdf";
+
 /* ── Section data ──────────────────────────────────────────── */
 const SECTIONS = [
   { id: "hero", label: "Origin" },
@@ -64,7 +66,7 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
 
   if (!open) return null;
 
-  const pdfUrl = "/Alston%20Drew%20Devero-Belfon_Resume.pdf";
+  const pdfUrl = RESUME_URL;
 
   return (
     <div
@@ -79,19 +81,6 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
         className="relative w-full max-w-4xl h-[85vh] rounded-2xl border border-white/25 bg-white/10 backdrop-blur-xl shadow-[0_0_60px_rgba(100,100,255,0.15),0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Link button — styled to match Chrome's native PDF-toolbar icons, sits left of Save-to-Drive */}
-        <a
-          href={pdfUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="absolute top-2 right-24 z-10 p-1.5 rounded-md text-[#e8eaed] hover:bg-white/10 transition-colors cursor-pointer"
-          aria-label="Open resume link in new tab"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
-          </svg>
-        </a>
-
         {/* Close button */}
         <button
           onClick={onClose}
@@ -771,9 +760,14 @@ function ContactSection({ visible, scrollRef, onResumeOpen }: { visible: boolean
               </div>
             </a>
           ))}
-          {/* Resume button */}
-          <button
-            onClick={onResumeOpen}
+          {/* Resume link — anchor so right-click reveals the PDF URL; left-click opens the modal */}
+          <a
+            href={RESUME_URL}
+            onClick={(e) => {
+              if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+              e.preventDefault();
+              onResumeOpen();
+            }}
             className="group flex items-center gap-3 rounded-xl border border-sky-300/40 bg-slate-900/80 backdrop-blur-xl p-4 hover:bg-slate-800/85 hover:border-sky-200/55 transition-all duration-300 text-left cursor-pointer"
           >
             <span className="text-white/50 group-hover:text-white/80 transition-colors">
@@ -783,7 +777,7 @@ function ContactSection({ visible, scrollRef, onResumeOpen }: { visible: boolean
               <p className="text-white text-sm font-medium">Resume</p>
               <p className="text-white/75 text-xs">View PDF</p>
             </div>
-          </button>
+          </a>
         </div>
 
         <a
